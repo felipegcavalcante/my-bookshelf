@@ -1,0 +1,427 @@
+$grey-white-smoke: rgb(243, 243, 243);
+$grey-secondary: #ddd;
+$primary-color: #0066ff;
+$secondary-color: #3385ff;
+$font-color: #3b3b3b;
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+// a, input[type="submit"] {
+//     font-size: 15px;
+// }
+// Header
+
+.header {
+    background-color: $grey-white-smoke;
+}
+
+.header__logo {
+    font-family: 'Ramaraja';
+    padding-top: 16px;
+    padding-left: 17px;
+    display: inline-block;
+}
+
+.header__logo__link {
+    color: black;
+    text-decoration: none;
+}
+
+.header__user-area {
+    float: right;
+    padding-top: 21px;
+    padding-right: 16px;
+}
+
+.header__icon {
+    display: inline-block;
+    font-size: 1.5em;
+    transform: translateY(-10px);
+    margin-right: 5px;
+}
+
+.header__text {
+    text-align: right;
+    display: inline-block;
+    transform: translateY(-4px);
+
+}
+
+.header__link {
+    display: block;
+    text-align: center;
+    color: black;
+    text-decoration: underline;
+
+}
+
+// Footer
+
+.footer {
+    background-color: $grey-white-smoke;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+}
+
+.footer__text {
+    text-align: center;
+    padding: 30px;
+}
+
+// Gerais
+
+.button {
+    background-color: $primary-color;
+    border: 1px solid $primary-color;
+    border-radius: 5px;
+    font-size: 13px;
+    text-decoration: none;
+    padding: .5em 1.3em;
+    color: white;
+    margin-bottom: 20px;
+    transition: .3s;
+    white-space: nowrap;
+
+    &:hover {
+        background-color: $secondary-color;
+    }
+}
+
+.button--remove {
+    background-color: red;
+    border: 1px solid red;
+
+    &:hover {
+        background-color: rgb(253, 69, 69);
+    }
+}
+
+.button--secondary {
+    color: $primary-color;
+    background-color: transparent;
+    &:hover {
+        color: white;
+        background-color: $primary-color;
+    }
+}
+
+.container {
+    margin: 16px 20px 16px 20px;
+}
+
+.main__title {
+    margin-bottom: 30px;
+    margin-left: -1px;
+    padding-top: 1em;
+    color: $font-color;
+}
+
+
+// Forms
+.form__group {
+    margin-bottom: 10px;
+}
+
+.form__label {
+    font-size: 1.2em;
+    color: $font-color;
+}
+
+.form__input {
+    box-sizing: border-box;
+    font-size: 1.2em;
+    color: $font-color;
+    border: 1px solid #ccc;
+    outline-color: #ccc;
+    border-radius: 5px;
+    height: 2em;
+    padding-left: 5px;
+    width: 100%;
+    transition: .3s;
+
+    &:focus {
+        outline-color: $primary-color;
+    }
+}
+
+.form__textArea {
+    box-sizing: border-box;
+    font-size: 1.2em;
+    color: $font-color;
+    border: 1px solid #ccc;
+    outline-color: #ccc;
+    border-radius: 5px;
+    padding-top: 5px;
+    padding-left: 5px;
+    width: 100%;
+    transition: .3s;
+    &:focus {
+        outline-color: $primary-color;
+    }
+}
+
+.form__select {
+    box-sizing: border-box;
+    font-size: 1.2em;
+    color: $font-color;
+    border: 1px solid #ccc;
+    height: 2em;
+    outline-color: #ccc;
+    border-radius: 5px;
+    padding-left: 5px;
+    width: 100%;
+    transition: .3s;
+    &:focus {
+        outline-color: $primary-color;
+    }
+}
+
+.form__checkbox {
+    font-size: 1.2em;
+    color: $font-color;
+    border: 1px solid #ccc;
+    outline-color: #ccc;
+    border-radius: 5px;
+    height: 1.5em;
+    padding-left: 5px;
+    width: 5%;
+    margin-left: 0;
+}
+// Table
+
+.table {
+    margin-top: 25px;
+    width: 100%;
+    border-collapse: collapse;
+}
+.table__title {
+    background: $grey-white-smoke;
+    color: black;
+    font-weight: bold;
+}
+.table__data, .table__title {
+    padding: 6px;
+    border: 1px solid $grey-secondary;
+    text-align: center;
+    color: $font-color;
+}
+
+.table__button {
+    text-decoration: none;
+    color: $font-color;
+}
+
+@media (max-width: 768px) {
+    .table__data, .table__title {
+        padding: 6px;
+        border: 1px solid $grey-secondary;
+        text-align: left;
+        }
+
+        .table, .table__head, .table__body, .table__title, .table__data, .table__row {
+            display: block;
+        }
+
+        .table__head .table__row {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+
+    .table__row {
+        border: 1px solid $grey-secondary;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+    .table__data {
+        border: none;
+        border-bottom: 1px solid $grey-secondary;
+        position: relative;
+        padding-left: 50%;
+    }
+
+    .table__data:nth-of-type(8) {
+        border-bottom: 1px solid transparent;
+    }
+
+    .table__data:before {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+    }
+
+    .table__data:nth-of-type(1):before { content: ""; }
+    .table__data:nth-of-type(2):before { content: "Capa:"; }
+    .table__data:nth-of-type(3):before { content: "Título:"; }
+    .table__data:nth-of-type(4):before { content: "Autor:"; }
+    .table__data:nth-of-type(5):before { content: "Gênero:"; }
+    .table__data:nth-of-type(6):before { content: "Editora:"; }
+    .table__data:nth-of-type(7):before { content: "Número de Páginas:"; }
+    .table__data:nth-of-type(8):before { content: "Ações:"; }
+}
+
+// Modal
+
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: rgba(0,0,0,0.8);
+    z-index: 99999;
+    opacity:0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+
+.modal:target {
+opacity: 1;
+pointer-events: auto;
+}
+
+.remove {
+    border-top: 10px solid red;
+    width: 80%;
+    position: relative;
+    margin: 10% auto;
+    padding: 15px 20px;
+    background: #fff;
+}
+
+
+.remove__icon {
+    display: block;
+    text-align: center;
+    margin: 20px auto;
+    font-size: 3em;
+}
+.remove__title {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 2em;
+    color: $font-color;
+}
+
+.remove__text {
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: 400;
+    font-size: 1.3em;
+    color: $font-color;
+}
+
+.remove__list {
+    margin-bottom: 25px;
+    list-style-type: none;
+}
+
+.remove__book {
+    color: $font-color;
+    text-align: center;
+
+    &::before { content: "• ";}
+
+}
+
+.modal__buton-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.modal__button {
+    display: inline-block;
+    font-size: 15px;
+    width: 30%;
+    text-align: center;
+}
+
+// Paginação
+
+.pagination {
+    display: inline-block;
+}
+
+.pagination__item {
+    color: $font-color;
+    float: left;
+    padding: 4px 8px;
+    text-decoration: none;
+    border: 1px solid $grey-secondary;
+    transition: .5s;
+
+    &:hover {
+        background-color: $grey-secondary;
+    }
+}
+
+.pagination__item:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.pagination__item:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.pagination__active {
+    color: white;
+    background-color: $primary-color;
+
+    &:hover {
+        color: white;
+        background-color: $primary-color;
+    }
+}
+
+@media (min-width: 768px) {
+    .form {
+        width: 50%;
+    }
+    .container {
+        margin: auto 10%;
+    }
+
+    .button {
+        font-size: 20px;
+    }
+
+    .header__logo {
+        font-family: 'Ramaraja';
+        padding-top: 16px;
+        padding-left: 10%;
+        display: inline-block;
+    }
+    .header__user-area {
+        padding-top: 21px;
+        padding-right: 10%;
+    }
+
+    .footer {
+        background-color: $grey-white-smoke;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+    }
+
+    .footer__text {
+        text-align: center;
+        padding: 30px;
+    }
+
+    .remove {
+        width: 40%;
+    }
+}
