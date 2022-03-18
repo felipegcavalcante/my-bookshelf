@@ -17,7 +17,8 @@
         <a href="index.php" class="header__logo__link"><h1 class="header__logo">MyBookshelf</h1></a>
         <div class="header__user-area">
             <i class="fa-solid fa-user header__icon"></i>
-            <p class="header__text">Olá, Felipe<br><a class="header__link" href="login.php">Logout</a></p>
+            <div class="header__text">Olá, Felipe</div>
+            <a class="header__link" href="login/logout.php">Logout</a>
         </div>
     </header>
     <main class="main">
@@ -41,8 +42,15 @@
                     <select name="genero" id="genero" class="form__select">
                         <option class="form__option" value="default"></option>
                         <option class="form__option" value="romance">Romance</option>
-                        <option class="form__option" value="romance">Comédia</option>
-                        <option class="form__option" value="romance">Fábula</option>
+                        <option class="form__option" value="comedia">Comédia</option>
+                        <option class="form__option" value="conto">Conto</option>
+                        <option class="form__option" value="ficcao">Ficção</option>
+                        <option class="form__option" value="novela">Novela</option>
+                        <option class="form__option" value="policial">Policial</option>
+                        <option class="form__option" value="suspense">Suspense</option>
+                        <option class="form__option" value="infantil">Infantil</option>
+                        <option class="form__option" value="biografia">Biografia</option>
+                        <option class="form__option" value="poesia">Poesia</option>
                     </select>
                 </div>
                 <div class="form__group">

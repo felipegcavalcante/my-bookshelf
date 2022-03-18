@@ -9,10 +9,8 @@ $font-color: #3b3b3b;
     padding: 0;
     font-family: 'Roboto', sans-serif;
 }
+// Alerts
 
-// a, input[type="submit"] {
-//     font-size: 15px;
-// }
 // Header
 
 .header {
@@ -40,14 +38,14 @@ $font-color: #3b3b3b;
 .header__icon {
     display: inline-block;
     font-size: 1.5em;
-    transform: translateY(-10px);
     margin-right: 5px;
+    transform: translateY(5px);
 }
 
 .header__text {
-    text-align: right;
     display: inline-block;
-    transform: translateY(-4px);
+    text-align: right;
+    transform: translateY(-5px);
 
 }
 
@@ -56,6 +54,7 @@ $font-color: #3b3b3b;
     text-align: center;
     color: black;
     text-decoration: underline;
+    transform: translate(10px, -5px);
 
 }
 
@@ -147,6 +146,15 @@ $font-color: #3b3b3b;
     &:focus {
         outline-color: $primary-color;
     }
+
+    &::placeholder {
+        color: #d3d3d3;
+    }
+}
+
+.form__file {
+    width: 100%;
+    font-size: 1.2em;
 }
 
 .form__textArea {

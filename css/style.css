@@ -30,16 +30,16 @@
 .header__icon {
   display: inline-block;
   font-size: 1.5em;
-  -webkit-transform: translateY(-10px);
-          transform: translateY(-10px);
   margin-right: 5px;
+  -webkit-transform: translateY(5px);
+          transform: translateY(5px);
 }
 
 .header__text {
-  text-align: right;
   display: inline-block;
-  -webkit-transform: translateY(-4px);
-          transform: translateY(-4px);
+  text-align: right;
+  -webkit-transform: translateY(-5px);
+          transform: translateY(-5px);
 }
 
 .header__link {
@@ -47,6 +47,8 @@
   text-align: center;
   color: black;
   text-decoration: underline;
+  -webkit-transform: translate(10px, -5px);
+          transform: translate(10px, -5px);
 }
 
 .footer {
@@ -135,6 +137,27 @@
 
 .form__input:focus {
   outline-color: #0066ff;
+}
+
+.form__input::-webkit-input-placeholder {
+  color: #d3d3d3;
+}
+
+.form__input:-ms-input-placeholder {
+  color: #d3d3d3;
+}
+
+.form__input::-ms-input-placeholder {
+  color: #d3d3d3;
+}
+
+.form__input::placeholder {
+  color: #d3d3d3;
+}
+
+.form__file {
+  width: 100%;
+  font-size: 1.2em;
 }
 
 .form__textArea {

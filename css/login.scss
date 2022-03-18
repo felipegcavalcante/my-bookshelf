@@ -4,6 +4,18 @@
     font-family: 'Roboto', sans-serif;
 }
 
+.alert {
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: .5em .5em;
+    font-size: 1.5em;
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    color: #ff1a1a;
+    background-color: #ffcccc;
+}
+
 .button {
     background-color: #0066ff;
     border: 1px solid #0066ff;
@@ -86,10 +98,15 @@
     color: #0066ff;
     font-size: 1.1em;
     text-decoration: none;
+    padding-bottom: 2em;
 }
 
 @media (min-width: 768px) {
     .form {
+        width: 40%;
+    }
+
+    .alert {
         width: 40%;
     }
 }

@@ -1,3 +1,14 @@
+<?php
+
+session_start();
+require_once "login/verificaLogin.php";
+require_once "conection.php";
+isLogged();
+
+$nome = $_SESSION["nome"];
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -17,7 +28,8 @@
         <h1 class="header__logo">MyBookshelf</h1>
         <div class="header__user-area">
             <i class="fa-solid fa-user header__icon"></i>
-            <p class="header__text">Olá, Felipe<br><a class="header__link" href="login.php">Logout</a></p>
+            <div class="header__text">Olá, <?php echo $nome ?></div>
+            <a class="header__link" href="login/logout.php">Logout</a>
         </div>
     </header>
     <main class="main">
