@@ -1,0 +1,13 @@
+.alert {
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1.5em;
+    margin: auto;
+    padding: .5em .5em;
+    text-align: center;
+}
+
+.alert--error {
+    background-color: $secondary-red;
+    color: $primary-red;
+}

@@ -1,0 +1,38 @@
+.button {
+    background-color: $primary-color;
+    border-radius: 5px;
+    border: 2px solid $primary-color;
+    color: white;
+    cursor: pointer;
+    display: block;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    padding: .6em 1.3em;
+    text-align: center;
+    text-decoration: none;
+    transition: .3s;
+    white-space: nowrap;
+
+    &:hover {
+        background-color: $secondary-color;
+    }
+}
+
+.button--remove {
+    background-color: red;
+    border: 1px solid red;
+
+    &:hover {
+        background-color: rgb(253, 69, 69);
+    }
+}
+
+.button--secondary {
+    background-color: transparent;
+    color: $primary-color;
+    &:hover {
+        background-color: $secondary-color;
+        color: white;
+    }
+}

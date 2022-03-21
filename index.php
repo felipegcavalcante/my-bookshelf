@@ -19,24 +19,24 @@ $nome = $_SESSION["nome"];
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ramaraja&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <title>MyBookshelf</title>
+    <title>My Bookshelf</title>
 </head>
 <body>
     <header class="header">
-        <h1 class="header__logo">MyBookshelf</h1>
+        <h1 class="header__logo">My Bookshelf</h1>
         <div class="header__user-area">
             <i class="fa-solid fa-user header__icon"></i>
-            <div class="header__text">Olá, <?php echo $nome ?></div>
-            <a class="header__link" href="login/logout.php">Logout</a>
+            <div class="header__username">Olá, <?php echo $nome ?></div>
+            <a class="header__logout" href="login/logout.php">Logout</a>
         </div>
     </header>
     <main class="main">
         <div class="container">
             <h1 class="main__title">Meus Livros</h1>
             <a href="cadastrarLivro.php" class="button">Cadastrar Livro</a>
-            <a href="#" class="button button--remove">Remover Selecionados</a>
+            <a href="#" class="button button--secondary">Remover Selecionados</a>
             <table class="table">
                 <thead class="table__head">
                     <tr class="table__row">
@@ -46,14 +46,18 @@ $nome = $_SESSION["nome"];
                         <th class="table__title">Autor</th>
                         <th class="table__title">Gênero</th>
                         <th class="table__title">Editora</th>
-                        <th class="table__title">Número de Páginas</th>
+                        <th class="table__title">N° de Páginas</th>
                         <th class="table__title">Ações</th>
                     </tr>
                 </thead>
                 <tbody class="table__body">
                     <tr class="table__row">
-                        <td class="table__data"><input class="table__checkbox" type="checkbox" name="" id=""></td>
-                        <td class="table__data"><img src="https://d19qz1cqidnnhq.cloudfront.net/imagens/capas/e46ef4365583e6c89069b2d90eb2683a627fc2d1.jpg" alt="Capa do Livro Quincas Borba" height="100px"></td>
+                        <td class="table__data">
+                            <input class="table__checkbox" type="checkbox" name="" id="">
+                        </td>
+                        <td class="table__data">
+                            <img class="table__img" src="https://d19qz1cqidnnhq.cloudfront.net/imagens/capas/e46ef4365583e6c89069b2d90eb2683a627fc2d1.jpg" alt="Capa do Livro Quincas Borba">
+                        </td>
                         <td class="table__data">Quincas Borba</td>
                         <td class="table__data">Machado de Assis</td>
                         <td class="table__data">Romance</td>
@@ -65,8 +69,12 @@ $nome = $_SESSION["nome"];
                         </td>
                     </tr>
                     <tr class="table__row">
-                        <td class="table__data"><input class="table__checkbox" type="checkbox" name="" id=""></td>
-                        <td class="table__data"><img src="https://d19qz1cqidnnhq.cloudfront.net/imagens/capas/e46ef4365583e6c89069b2d90eb2683a627fc2d1.jpg" alt="Capa do Livro Quincas Borba" height="100px"></td>
+                        <td class="table__data">
+                            <input class="table__checkbox" type="checkbox" name="" id="">
+                        </td>
+                        <td class="table__data">
+                            <img class="table__img" src="https://d19qz1cqidnnhq.cloudfront.net/imagens/capas/e46ef4365583e6c89069b2d90eb2683a627fc2d1.jpg" alt="Capa do Livro Quincas Borba">
+                        </td>
                         <td class="table__data">Quincas Borba</td>
                         <td class="table__data">Machado de Assis</td>
                         <td class="table__data">Romance</td>
@@ -78,8 +86,12 @@ $nome = $_SESSION["nome"];
                         </td>
                     </tr>
                     <tr class="table__row">
-                        <td class="table__data"><input class="table__checkbox" type="checkbox" name="" id=""></td>
-                        <td class="table__data"><img src="https://d19qz1cqidnnhq.cloudfront.net/imagens/capas/e46ef4365583e6c89069b2d90eb2683a627fc2d1.jpg" alt="Capa do Livro Quincas Borba" height="100px"></td>
+                        <td class="table__data">
+                            <input class="table__checkbox" type="checkbox" name="" id="">
+                        </td>
+                        <td class="table__data">
+                            <img class="table__img" src="https://d19qz1cqidnnhq.cloudfront.net/imagens/capas/e46ef4365583e6c89069b2d90eb2683a627fc2d1.jpg" alt="Capa do Livro Quincas Borba">
+                        </td>
                         <td class="table__data">Quincas Borba</td>
                         <td class="table__data">Machado de Assis</td>
                         <td class="table__data">Romance</td>
@@ -91,8 +103,12 @@ $nome = $_SESSION["nome"];
                         </td>
                     </tr>
                     <tr class="table__row">
-                        <td class="table__data"><input class="table__checkbox" type="checkbox" name="" id=""></td>
-                        <td class="table__data"><img src="https://d19qz1cqidnnhq.cloudfront.net/imagens/capas/e46ef4365583e6c89069b2d90eb2683a627fc2d1.jpg" alt="Capa do Livro Quincas Borba" height="100px"></td>
+                        <td class="table__data">
+                            <input class="table__checkbox" type="checkbox" name="" id="">
+                        </td>
+                        <td class="table__data">
+                            <img class="table__img" src="https://d19qz1cqidnnhq.cloudfront.net/imagens/capas/e46ef4365583e6c89069b2d90eb2683a627fc2d1.jpg" alt="Capa do Livro Quincas Borba">
+                        </td>
                         <td class="table__data">Quincas Borba</td>
                         <td class="table__data">Machado de Assis</td>
                         <td class="table__data">Romance</td>
@@ -104,8 +120,12 @@ $nome = $_SESSION["nome"];
                         </td>
                     </tr>
                     <tr class="table__row">
-                        <td class="table__data"><input class="table__checkbox" type="checkbox" name="" id=""></td>
-                        <td class="table__data"><img src="https://d19qz1cqidnnhq.cloudfront.net/imagens/capas/e46ef4365583e6c89069b2d90eb2683a627fc2d1.jpg" alt="Capa do Livro Quincas Borba" height="100px"></td>
+                        <td class="table__data">
+                            <input class="table__checkbox" type="checkbox" name="" id="">
+                        </td>
+                        <td class="table__data">
+                            <img class="table__img" src="https://d19qz1cqidnnhq.cloudfront.net/imagens/capas/e46ef4365583e6c89069b2d90eb2683a627fc2d1.jpg" alt="Capa do Livro Quincas Borba">
+                        </td>
                         <td class="table__data">Quincas Borba</td>
                         <td class="table__data">Machado de Assis</td>
                         <td class="table__data">Romance</td>

@@ -1,0 +1,72 @@
+.login__logo {
+    font-family: 'Ramaraja';
+    font-size: 3.8em;
+    margin-top: 3.5em;
+    text-align: center;
+}
+
+.form__group {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.form__label {
+    font-size: 1.5em;
+}
+
+.form__input {
+    font-size: 1.5em;
+}
+
+.form__link {
+    color: $primary-color;
+    display: block;
+    text-decoration: none;
+    font-size: .9em;
+    margin-top: 7px;
+    transition: .3s;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.login__button {
+    box-sizing: border-box;
+    font-size: 1.5em;
+    margin-top: 20px;
+    padding: .5em .75em;
+    width: 100%;
+}
+
+.login__text {
+    color: $font-color;
+    font-size: 1.1em;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.login__link {
+    color: $primary-color;
+    font-size: 1.1em;
+    text-decoration: none;
+    transition: .3s;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.alert {
+    width: 80%;
+}
+
+@media (min-width: 768px) {
+    .form {
+        width: 40%;
+    }
+
+    .alert {
+        width: 40%;
+    }
+}

@@ -1,0 +1,97 @@
+.form[action="login.php"] {
+    margin: auto;
+    width: 80%;
+}
+
+.form__group {
+    margin-bottom: 10px;
+}
+
+.form__label {
+    color: $font-color;
+    display: block;
+    font-size: 1.2em;
+    margin-bottom: 6px;
+    width: 100%;
+}
+
+.form__input {
+    border-radius: 5px;
+    border: 1px solid $grey-tertiary;
+    box-sizing: border-box;
+    color: $font-color;
+    font-size: 1.2em;
+    height: 2em;
+    outline-color: $grey-tertiary;
+    padding-left: 5px;
+    transition: .3s;
+    width: 100%;
+
+    &:focus {
+        outline-color: $primary-color;
+    }
+
+    &::placeholder {
+        color: #d3d3d3;
+    }
+}
+
+.form__file {
+    font-size: 1.2em;
+    width: 100%;
+}
+
+.form__textArea {
+    border-radius: 5px;
+    border: 1px solid $grey-tertiary;
+    box-sizing: border-box;
+    color: $font-color;
+    font-size: 1.2em;
+    outline-color: $grey-tertiary;
+    padding-left: 5px;
+    padding-top: 5px;
+    transition: .3s;
+    width: 100%;
+    &:focus {
+        outline-color: $primary-color;
+    }
+}
+
+.form__select {
+    border-radius: 5px;
+    border: 1px solid $grey-tertiary;
+    box-sizing: border-box;
+    color: $font-color;
+    font-size: 1.2em;
+    height: 5em;
+    outline-color: $grey-tertiary;
+    padding-left: 5px;
+    transition: .3s;
+    width: 100%;
+    &:focus {
+        outline-color: $primary-color;
+    }
+}
+
+.form__checkbox {
+    border-radius: 5px;
+    border: 1px solid $grey-tertiary;
+    color: $font-color;
+    font-size: 1.2em;
+    height: 1.5em;
+    margin-left: 0;
+    outline-color: $grey-tertiary;
+    padding-left: 5px;
+    width: 5%;
+}
+
+.form__helper {
+    color: $grey-tertiary;
+    font-size: .8em;
+}
+
+@media (min-width: 768px) {
+    .form {
+        width: 50%;
+    }
+}

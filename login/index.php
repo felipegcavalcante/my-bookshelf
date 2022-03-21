@@ -2,7 +2,6 @@
 
     session_start();
     require_once "../conection.php";
-    // require_once "login.php";
 
 ?>
 
@@ -15,12 +14,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ramaraja&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/login.css">
-    <title>Login - MyBookshelf</title>
+    <title>Login - My Bookshelf</title>
 </head>
 <body>
-        <h1 class="login__logo">MyBookshelf</h1>
+        <h1 class="login__logo">My Bookshelf</h1>
         <?php
            if(isset($_SESSION['preencha_campos'])){
         ?>
@@ -39,11 +38,11 @@
         ?>
         <form action="login.php" method="post" class="form">
             <div class="form__group">
-                <label for="email" class="form__label">Email</label><br>
+                <label for="email" class="form__label">Email</label>
                 <input type="email" name="email" id="email" class="form__input" autofocus>
             </div>
             <div class="form__group">
-                <label for="senha" class="form__label">Senha</label><br>
+                <label for="senha" class="form__label">Senha</label>
                 <input type="password" name="senha" id="senha" class="form__input">
             </div>
             <a href="#" class="form__link">Esqueceu sua senha?</a>

@@ -1,0 +1,23 @@
+.container {
+    margin: 16px 20px 16px 20px;
+}
+.container .alert {
+    width: 100%;
+}
+
+.main__title {
+    color: $font-color;
+    margin-bottom: 30px;
+    margin-left: -1px;
+    padding-top: .4em;
+}
+
+@media (min-width: 768px) {
+    .container {
+        margin: auto 10%;
+    }
+
+    .main__title {
+        padding-top: 1em;
+    }
+}
