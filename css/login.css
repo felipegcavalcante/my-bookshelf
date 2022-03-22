@@ -26,8 +26,8 @@
 }
 
 .button--remove {
-  background-color: red;
-  border: 1px solid red;
+  background-color: #ff1a1a;
+  border: 1px solid #ff1a1a;
 }
 .button--remove:hover {
   background-color: #fd4545;
@@ -40,11 +40,6 @@
 .button--secondary:hover {
   background-color: #3385ff;
   color: white;
-}
-
-.form[action="login.php"] {
-  margin: auto;
-  width: 80%;
 }
 
 .form__group {
@@ -83,7 +78,7 @@
   width: 100%;
 }
 
-.form__textArea {
+.form__text-area {
   border-radius: 5px;
   border: 1px solid #ccc;
   box-sizing: border-box;
@@ -95,7 +90,7 @@
   transition: 0.3s;
   width: 100%;
 }
-.form__textArea:focus {
+.form__text-area:focus {
   outline-color: #0066ff;
 }
 
@@ -174,7 +169,7 @@
 
 .remove {
   background: #fff;
-  border-top: 10px solid red;
+  border-top: 10px solid #ff1a1a;
   margin: 10% auto;
   padding: 15px 20px;
   position: relative;
@@ -260,11 +255,11 @@
   border-top-right-radius: 5px;
 }
 
-.pagination__active {
+.pagination__item--active {
   background-color: #0066ff;
   color: white;
 }
-.pagination__active:hover {
+.pagination__item--active:hover {
   background-color: #0066ff;
   color: white;
 }
@@ -487,6 +482,11 @@
   font-size: 3.8em;
   margin-top: 3.5em;
   text-align: center;
+}
+
+.form {
+  margin: auto;
+  width: 80%;
 }
 
 .form__group {

@@ -159,7 +159,7 @@ $nome = $_SESSION["nome"];
                 <a href="#" class="pagination__item">Anterior</a>
                 <a href="#" class="pagination__item">1</a>
                 <a href="#" class="pagination__item">2</a>
-                <a href="#" class="pagination__item pagination__active">3</a>
+                <a href="#" class="pagination__item pagination__item--active">3</a>
                 <a href="#" class="pagination__item">Próximo</a>
             </div>
         </div>

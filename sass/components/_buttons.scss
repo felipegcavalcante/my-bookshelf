@@ -20,11 +20,11 @@
 }
 
 .button--remove {
-    background-color: red;
-    border: 1px solid red;
+    background-color: $primary-red;
+    border: 1px solid $primary-red;
 
     &:hover {
-        background-color: rgb(253, 69, 69);
+        background-color: $tertiary-red;
     }
 }
 

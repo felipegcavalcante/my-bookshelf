@@ -67,7 +67,7 @@
                 </div>
                 <div class="form__group">
                     <label for="descricao" class="form__label">Descrição</label>
-                    <textarea name="descricao" id="descricao" rows="3" class="form__textArea"></textarea>
+                    <textarea name="descricao" id="descricao" rows="3" class="form__text-area"></textarea>
                 </div>
                 <a href="index.php" class="button button--secondary">Voltar</a>
                 <input type="submit" class="button" value="Salvar">
