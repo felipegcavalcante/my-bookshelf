@@ -1,25 +1,16 @@
-@import "abstracts/variables";
-
-@import "core/reset";
+@import "base/variables";
+@import "base/reset";
 
 @import "components/buttons";
-
 @import "components/forms";
-
 @import "components/messages";
-
 @import "components/modal";
-
 @import "components/pagination";
-
 @import "components/table";
 
 @import "layout/footer";
-
 @import "layout/header";
-
 @import "layout/main";
 
 @import "pages/cadastro";
-
 @import "pages/home";

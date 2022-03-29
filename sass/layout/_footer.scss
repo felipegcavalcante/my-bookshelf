@@ -1,25 +1,11 @@
 .footer {
     background-color: $grey-white-smoke;
     bottom: 0;
-    position: relative;
+    position: fixed;
     width: 100%;
-}
 
-.footer__text {
-    padding: 30px;
-    text-align: center;
-}
-
-@media (min-width: 768px) {
-    .footer {
-        background-color: $grey-white-smoke;
-        bottom: 0;
-        position: absolute;
-        width: 100%;
-    }
-
-    .footer__text {
-        padding: 30px;
+    &__text {
+        padding: 1.875px;
         text-align: center;
     }
 }

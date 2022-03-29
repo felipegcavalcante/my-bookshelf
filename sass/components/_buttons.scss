@@ -1,14 +1,14 @@
 .button {
     background-color: $primary-color;
-    border-radius: 5px;
     border: 2px solid $primary-color;
-    color: white;
+    border-radius: 5px;
+    color: $color-white;
     cursor: pointer;
-    display: block;
-    font-size: 18px;
+    display: inline-block;
+    font-size: 1.125rem;
     font-weight: 500;
     margin-bottom: 20px;
-    padding: .6em 1.3em;
+    padding: .6rem 1.2rem;
     text-align: center;
     text-decoration: none;
     transition: .3s;
@@ -17,22 +17,23 @@
     &:hover {
         background-color: $secondary-color;
     }
-}
 
-.button--remove {
-    background-color: $primary-red;
-    border: 1px solid $primary-red;
+    &--secondary {
+        background-color: transparent;
+        color: $primary-color;
 
-    &:hover {
-        background-color: $tertiary-red;
+        &:hover {
+            background-color: $secondary-color;
+            color: $color-white;
+        }
     }
-}
 
-.button--secondary {
-    background-color: transparent;
-    color: $primary-color;
-    &:hover {
-        background-color: $secondary-color;
-        color: white;
+    &--danger {
+        background-color: $primary-red;
+        border: 1px solid $primary-red;
+
+        &:hover {
+            background-color: $tertiary-red;
+        }
     }
 }

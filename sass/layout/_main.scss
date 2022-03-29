@@ -1,23 +1,20 @@
-.container {
-    margin: 16px 20px 16px 20px;
-}
-.container .alert {
-    width: 100%;
-}
+.main {
+    &__container {
+        margin: 16px 20px;
 
-.main__title {
-    color: $font-color;
-    margin-bottom: 30px;
-    margin-left: -1px;
-    padding-top: .4em;
-}
-
-@media (min-width: 768px) {
-    .container {
-        margin: auto 10%;
+        @media (min-width: 1024px) {
+            margin: auto 10%;
+        }
     }
 
-    .main__title {
-        padding-top: 1em;
+    &__title {
+        color: $font-color;
+        margin-bottom: 30px;
+        margin-left: -1px;
+        padding-top: .4rem;
+
+        @media (min-width: 1024px) {
+            padding-top: 1rem;
+        }
     }
 }

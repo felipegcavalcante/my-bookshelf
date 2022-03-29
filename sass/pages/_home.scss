@@ -1,10 +1,11 @@
 .container .button {
-    display: inline;
+    display: inline-block;
     max-width: 50%;
 }
 
 @media (min-width: 768px) {
     .button {
-        display: inline;
+        display: inline-block;
+        margin-top: 30px;
     }
 }

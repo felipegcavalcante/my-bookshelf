@@ -2,79 +2,72 @@
     border-collapse: collapse;
     margin-top: 25px;
     width: 100%;
-}
-.table__title {
-    background: $grey-white-smoke;
-    color: black;
-    font-weight: 700;
-}
-.table__data, .table__title {
-    border: 1px solid $grey-secondary;
-    color: $font-color;
-    padding: 6px;
-    text-align: center;
+
+    &__header {
+        background: $grey-white-smoke;
+        color: $color-black;
+        font-weight: bold;
+    }
+
+    &__data {
+        color: $font-color;
+        padding: .375rem;
+    }
+
+    &__button {
+        color: $font-color;
+        text-decoration: underline;
+        transition: .3s;
+
+        &:hover {
+            color: $color-black;
+        }
+    }
+
+    &__img {
+        height: 100px;
+    }
+
+    &--striped {
+        tr:nth-child(even) {
+            background-color: $grey-white-smoke;
+        }
+    }
 }
 
-.table__button {
-    color: $font-color;
-    text-decoration: none;
-}
-
-.table__row:nth-child(even) {
-    background-color: $grey-white-smoke;
-}
-
-.table__img {
-    height: 100px;
-}
 @media (max-width: 768px) {
-    .table__data, .table__title {
+    .table__head {
+        display: none;
+    }
+
+    .table__data {
         border: 1px solid $grey-secondary;
-        padding: 6px;
+        display: block;
+        padding-left: 50%;
+        position: relative;
         text-align: left;
-        }
 
-        .table, .table__head, .table__body, .table__title, .table__data, .table__row {
-            display: block;
-        }
-
-        .table__head .table__row {
-            left: -9999px;
+        &:before {
+            align-items: center;
+            content: attr(data-header);
+            display: flex;
+            font-weight: bold;
+            left: 0;
+            height: 100%;
+            margin-top: -.375rem;
+            padding-left: .375rem;
+            padding-right: 10px;
             position: absolute;
-            top: -9999px;
+            white-space: nowrap;
+            width: 45%;
         }
+    }
 
     .table__row {
+        background-color: transparent!important;
         border: 1px solid $grey-secondary;
+        display: block;
         border-radius: 5px;
         margin-bottom: 20px;
     }
-    .table__data {
-        border: none;
-        border-bottom: 1px solid $grey-secondary;
-        padding-left: 50%;
-        position: relative;
-    }
-
-    .table__data:nth-of-type(8) {
-        border-bottom: 1px solid transparent;
-    }
-
-    .table__data:before {
-        left: 6px;
-        padding-right: 10px;
-        position: absolute;
-        top: 6px;
-        white-space: nowrap;
-        width: 45%;
-    }
-
-    .table__data:nth-of-type(1):before { content: ""; }
-    .table__data:nth-of-type(2):before { content: "Capa:"; }
-    .table__data:nth-of-type(3):before { content: "Título:"; font-weight: 700; }
-    .table__data:nth-of-type(4):before { content: "Autor:"; }
-    .table__data:nth-of-type(5):before { content: "Gênero:"; }
-    .table__data:nth-of-type(6):before { content: "Editora:"; }
-    .table__data:nth-of-type(7):before { content: "Número de Páginas:"; }
-    .table__data:nth-of-type(8):before { content: "Ações:"; }
 }

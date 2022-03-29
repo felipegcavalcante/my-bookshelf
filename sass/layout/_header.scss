@@ -1,57 +1,40 @@
 .header {
     background-color: $grey-white-smoke;
-}
+    display: flex;
+    height: 80px;
 
-.header__logo {
-    display: inline-block;
-    font-family: 'Ramaraja';
-    padding-left: 17px;
-    padding-top: 16px;
-}
+    &__container {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        margin: 0 20px;
+        width: 100%;
 
-.header__logo__link {
-    color: black;
-    text-decoration: none;
-}
-
-.header__user-area {
-    float: right;
-    padding-right: 16px;
-    padding-top: 21px;
-}
-
-.header__icon {
-    display: inline-block;
-    font-size: 1.5em;
-    margin-right: 5px;
-    transform: translateY(5px);
-}
-
-.header__username {
-    display: inline-block;
-    text-align: right;
-    transform: translateY(-5px);
-
-}
-
-.header__logout {
-    color: black;
-    display: block;
-    text-align: center;
-    text-decoration: underline;
-    transform: translate(10px, -5px);
-
-}
-
-@media (min-width: 768px) {
-    .header__logo {
-        display: inline-block;
-        font-family: 'Ramaraja';
-        padding-left: 10%;
-        padding-top: 16px;
+        @media (min-width: 1024px) {
+            margin: 0 auto;
+            max-width: 1200px;
+            width: 80%;
+        }
     }
-    .header__user-area {
-        padding-right: 10%;
-        padding-top: 21px;
+
+    &__logo {
+        font-family: 'Ramaraja';
+        line-height: 2rem;
+        padding-top: .375rem;
+    }
+
+    &__user-area {
+        align-items: center;
+        display: flex;
+    }
+
+    &__icon {
+        font-size: 1.5rem;
+        margin-right: .375rem;
+    }
+
+    &__logout {
+        margin-left: 10px;
+        text-decoration: underline;
     }
 }

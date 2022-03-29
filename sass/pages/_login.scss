@@ -1,59 +1,63 @@
 .login__logo {
     font-family: 'Ramaraja';
-    font-size: 3.8em;
-    margin-top: 3.5em;
+    font-size: 6.5rem;
+    margin-top: 13.25rem;
     text-align: center;
 }
 
 .form {
     margin: auto;
     width: 80%;
-}
 
-.form__group {
-    margin-top: 20px;
-    width: 100%;
-}
-
-.form__label {
-    font-size: 1.5em;
-}
-
-.form__input {
-    font-size: 1.5em;
-}
-
-.form__link {
-    color: $primary-color;
-    display: block;
-    text-decoration: none;
-    font-size: .9em;
-    margin-top: 7px;
-    transition: .3s;
-
-    &:hover {
-        text-decoration: underline;
+    @media (min-width: 768px) {
+        width: 40%;
     }
-}
 
+    &__group {
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    &__label {
+        font-size: $font-size;
+    }
+
+    &__input {
+        font-size: $font-size;
+    }
+
+    &__link {
+        color: $primary-color;
+        display: block;
+        text-decoration: none;
+        font-size: .9em;
+        margin-top: 7px;
+        transition: .3s;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+}
 .login__button {
     box-sizing: border-box;
-    font-size: 1.5em;
+    font-size: $font-size;
     margin-top: 20px;
-    padding: .5em .75em;
+    padding: .5rem .75rem;
     width: 100%;
 }
 
 .login__text {
     color: $font-color;
-    font-size: 1.1em;
+    font-size: 1.1rem;
     margin-top: 20px;
     text-align: center;
 }
 
 .login__link {
     color: $primary-color;
-    font-size: 1.1em;
+    font-size: 1.1rem;
     text-decoration: none;
     transition: .3s;
 
@@ -64,14 +68,8 @@
 
 .alert {
     width: 80%;
-}
 
-@media (min-width: 768px) {
-    .form {
-        width: 40%;
-    }
-
-    .alert {
+    @media (min-width: 768px) {
         width: 40%;
     }
 }

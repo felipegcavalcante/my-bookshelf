@@ -1,13 +1,24 @@
 .alert {
     border-radius: 5px;
-    box-sizing: border-box;
-    font-size: 1.5em;
+    font-size: 1.5rem;
     margin: auto;
-    padding: .5em .5em;
+    padding: .75rem;
     text-align: center;
-}
+    margin-bottom: 30px;
+    margin-top: 30px;
 
-.alert--error {
-    background-color: $secondary-red;
-    color: $primary-red;
+    &--success {
+        background-color: $color-green-secondary;
+        color: $color-green;
+    }
+
+    &--error {
+        background-color: $secondary-red;
+        color: $primary-red;
+    }
+
+    @media (min-width: 768px) {
+        margin-left: 0;
+        width: 50%;
+    }
 }
