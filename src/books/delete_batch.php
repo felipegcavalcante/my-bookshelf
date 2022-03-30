@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require_once "../../conection.php";
+require_once "../../connection.php";
 if(!isset($_SESSION["nome"])) {
     header('Location: ../login/index.php');
     exit();

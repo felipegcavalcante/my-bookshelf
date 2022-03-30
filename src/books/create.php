@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "../../conection.php";
+require_once "../../connection.php";
 if(!isset($_SESSION["nome"])) {
     header('Location: ../login/index.php');
     exit();
@@ -47,7 +47,7 @@ delete_batch -> processo de remoção em lote
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ramaraja&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/form.css">
     <title>Cadastrar Livro</title>
 </head>
 <body>

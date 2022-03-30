@@ -1,22 +1,32 @@
 <?php
 
-// Paginação
-$itensPorPagina = 5;
-// Página Atual
-$pagina = (isset($_GET['pagina'])) ? (int)$_GET['pagina'] : 0;
+function paginate ($total, $size, $page) {
+    $numberOfPages = (int) ceil($total / $size);
+    $arrPages = range(1, $numberOfPages);
 
-// Total
-$resultTotal = $conn->prepare("SELECT * FROM livro");
-$resultTotal->execute();
-$numeroTotal = $resultTotal->rowCount();
+    if ($page > $numberOfPages || $page < 1) {
+        $page = 1;
+    }
 
-$item = $pagina * $itensPorPagina;
+    $previousPage = $page - 1;
+    $nextPage = $page + 1;
 
-$previousPage = $pagina - 1;
-$nextPage = $pagina + 1;
+    if ($previousPage < 1) {
+        $previousPage = null;
+    }
 
-// Definir número de páginas
+    if ($nextPage > $numberOfPages) {
+        $nextPage = null;
+    }
 
-$numberOfPages = ceil($numeroTotal / $itensPorPagina);
+    $pagination = [
+        'size' => $size,
+        'current_page' => $page,
+        'previous_page' => $previousPage,
+        'next_page' => $nextPage,
+        'pages' => $arrPages
+    ];
 
+    return $pagination;
+}
 ?>

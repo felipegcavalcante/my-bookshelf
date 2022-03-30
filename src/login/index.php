@@ -1,8 +1,9 @@
 <?php
-
     session_start();
-    require_once "../../conection.php";
+    require_once "../../connection.php";
 
+    $message = isset($_SESSION['flash_message']) ? $_SESSION['flash_message'] : null;
+    unset($_SESSION['flash_message']);
 ?>
 
 <!DOCTYPE html>
@@ -19,35 +20,28 @@
     <title>Login - My Bookshelf</title>
 </head>
 <body>
-        <h1 class="login__logo">My Bookshelf</h1>
-        <?php
-           if(isset($_SESSION['preencha_campos'])){
-        ?>
-          <div class="alert alert--error">Preencha todos os campos!</div>
-        <?php
-          }
-          unset($_SESSION['preencha_campos']);
-        ?>
-        <?php
-           if(isset($_SESSION['nao_autenticado'])){
-        ?>
-          <div class="alert alert-error">Email ou senha incorretos!</div>
-        <?php
-          }
-          unset($_SESSION['nao_autenticado']);
-        ?>
-        <form action="login.php" method="post" class="form">
-            <div class="form__group">
-                <label for="email" class="form__label">Email</label>
-                <input type="email" name="email" id="email" class="form__input" autofocus>
-            </div>
-            <div class="form__group">
-                <label for="senha" class="form__label">Senha</label>
-                <input type="password" name="senha" id="senha" class="form__input">
-            </div>
-            <a href="#" class="form__link">Esqueceu sua senha?</a>
-            <input type="submit" value="Login" class="button login__button">
-        </form>
-        <p class="login__text">Ainda não tem um login? <a href="#" class="login__link">Cadastre-se</a></p>
+  <div class="login__container">
+    <h1 class="login__logo">My Bookshelf</h1>
+
+    <?php if (! empty($message)): ?>
+        <div class="alert alert--<?= $message['type'] ?>">
+            <?= $message['message'] ?>
+        </div>
+    <?php endif; ?>
+
+    <form action="login.php" method="post" class="form">
+        <div class="form__group">
+            <label for="email" class="form__label">Email</label>
+            <input type="email" name="email" id="email" class="form__input" autofocus>
+        </div>
+        <div class="form__group">
+            <label for="senha" class="form__label">Senha</label>
+            <input type="password" name="senha" id="senha" class="form__input">
+        </div>
+        <a href="#" class="form__link">Esqueceu sua senha?</a>
+        <input type="submit" value="Login" class="button login__button">
+    </form>
+    <p class="login__text">Ainda não tem um login? <a href="#" class="login__link">Cadastre-se</a></p>
+  </div>
 </body>
 </html>

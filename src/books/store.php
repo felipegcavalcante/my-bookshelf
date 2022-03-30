@@ -4,7 +4,7 @@ if(!isset($_SESSION)){
 	session_start();
 }
 require_once "../login/verificaLogin.php";
-require_once '../../conection.php';
+require_once '../../connection.php';
 isLogged();
 
 $input = $_POST;

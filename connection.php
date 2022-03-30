@@ -1,8 +1,9 @@
 <?php
 
 $username = 'root';
+// $password = 'r007@my5ql';
 $password = '';
-$dbName = 'mybookshelf';
+$dbName = 'my_bookshelf';
 
 try{
     $conn = new PDO("mysql:host=localhost;dbname=$dbName;charset=utf8", $username, $password);

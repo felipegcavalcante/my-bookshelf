@@ -270,63 +270,19 @@ th, td {
     .main__title {
       padding-top: 1rem; } }
 
-.login__container {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100vh; }
+.container .button {
+  display: inline-block;
+  max-width: 50%; }
 
-.login__logo {
-  font-family: 'Ramaraja';
-  font-size: 5rem;
-  text-align: center; }
+@media (min-width: 768px) {
+  .button {
+    display: inline-block;
+    margin-top: 30px; }
+  .alert {
+    width: 100%; } }
 
-.login__button {
-  box-sizing: border-box;
-  font-size: 1.2rem;
-  margin-top: 20px;
-  padding: .5rem .75rem;
-  width: 100%; }
-
-.login__text {
-  color: #3b3b3b;
-  font-size: 1.1rem;
-  margin-top: 20px;
-  text-align: center; }
-
-.login__link {
-  color: #0066ff;
-  font-size: 1.1rem;
-  text-decoration: none;
-  transition: .3s; }
-  .login__link:hover {
-    text-decoration: underline; }
-
-.form {
-  width: 80%; }
-  @media (min-width: 768px) {
-    .form {
-      width: 40%; } }
-  .form__group {
-    margin-top: 20px;
-    width: 100%; }
-  .form__label {
-    font-size: 1.2rem; }
-  .form__input {
-    font-size: 1.2rem; }
-  .form__link {
-    color: #0066ff;
-    display: block;
-    text-decoration: none;
-    font-size: .9em;
-    margin-top: 7px;
-    transition: .3s; }
-    .form__link:hover {
-      text-decoration: underline; }
-
-.alert {
-  width: 80%; }
-  @media (min-width: 768px) {
-    .alert {
-      width: 40%; } }
+@media (min-width: 768px) {
+  .button {
+    display: inline; }
+  .alert {
+    width: 50%; } }

@@ -1,12 +1,46 @@
-.login__logo {
-    font-family: 'Ramaraja';
-    font-size: 6.5rem;
-    margin-top: 13.25rem;
-    text-align: center;
+.login {
+    &__container {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    &__logo {
+        font-family: 'Ramaraja';
+        font-size: 5rem;
+        text-align: center;
+    }
+
+    &__button {
+        box-sizing: border-box;
+        font-size: $font-size;
+        margin-top: 20px;
+        padding: .5rem .75rem;
+        width: 100%;
+    }
+
+    &__text {
+        color: $font-color;
+        font-size: 1.1rem;
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    &__link {
+        color: $primary-color;
+        font-size: 1.1rem;
+        text-decoration: none;
+        transition: .3s;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 }
 
 .form {
-    margin: auto;
     width: 80%;
 
     @media (min-width: 768px) {
@@ -39,31 +73,6 @@
         }
     }
 
-}
-.login__button {
-    box-sizing: border-box;
-    font-size: $font-size;
-    margin-top: 20px;
-    padding: .5rem .75rem;
-    width: 100%;
-}
-
-.login__text {
-    color: $font-color;
-    font-size: 1.1rem;
-    margin-top: 20px;
-    text-align: center;
-}
-
-.login__link {
-    color: $primary-color;
-    font-size: 1.1rem;
-    text-decoration: none;
-    transition: .3s;
-
-    &:hover {
-        text-decoration: underline;
-    }
 }
 
 .alert {

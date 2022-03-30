@@ -2,24 +2,44 @@
 
 session_start();
 require_once "../login/verificaLogin.php";
-require_once "../../conection.php";
+require_once "../../connection.php";
 isLogged();
 
-$nome = $_SESSION["nome"];
-$id_usuario = $_SESSION["id"];
+$name = $_SESSION["nome"];
+$userId = (int)$_SESSION["id"];
 
 require_once "../../paginate.php";
 
-$resultLivros = $conn->prepare("SELECT * FROM livro where id_usuario = ? LIMIT $item, $itensPorPagina");
-$resultLivros->execute([$id_usuario]);
-$numero = $resultLivros->rowCount();
+$sql1 = "SELECT COUNT(*) AS total FROM livro WHERE id_usuario = :userId";
+$result1 = $conn->prepare($sql1);
 
-$books = $resultLivros->fetchAll();
+$result1->bindParam('userId', $userId, PDO::PARAM_INT);
+$result1->execute();
+$count = $result1->fetchAll();
+$count = (int) $count[0]['total'];
+$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
+$size = (isset($_GET['size'])) ? (int)$_GET['size'] : 10;
 
-// 05. get flash message and clean the session
-$message = isset($_SESSION['flash_message']) ? $_SESSION['flash_message'] : null;
-unset($_SESSION['flash_message']);
+
+$pagination = paginate($count, $size, $page);
+
+    $sql2 = "SELECT * FROM livro WHERE id_usuario = :userId LIMIT :offset, :limit;";
+    $result2 = $conn->prepare($sql2);
+
+    $result2->bindParam('userId', $userId, PDO::PARAM_INT);
+    $result2->bindParam('offset', $pagination['current_page'], PDO::PARAM_INT);
+    $result2->bindParam('limit', $pagination['size'], PDO::PARAM_INT);
+    $result2->execute();
+
+    $books = $result2->fetchAll();
+
+    // 05. get flash message and clean the session
+    $message = isset($_SESSION['flash_message']) ? $_SESSION['flash_message'] : null;
+    unset($_SESSION['flash_message']);
+
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -32,7 +52,7 @@ unset($_SESSION['flash_message']);
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ramaraja&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/app.css">
     <title>My Bookshelf</title>
 </head>
 <body>
@@ -41,7 +61,7 @@ unset($_SESSION['flash_message']);
             <h1 class="header__logo">My Bookshelf</h1>
             <div class="header__user-area">
                 <i class="fa-solid fa-user header__icon"></i>
-                <div class="header__username">Olá, <?= $nome ?>!</div>
+                <div class="header__username">Olá, <?= $name ?>!</div>
                 <a class="header__logout" href="../login/logout.php">Logout</a>
             </div>
         </div>
@@ -72,6 +92,7 @@ unset($_SESSION['flash_message']);
                         </tr>
                     </thead>
                     <tbody class="table__body">
+                    <?php if (count($books) > 0): ?>
                         <?php foreach ($books as $book): ?>
                             <tr class="table__row">
                                 <td class="table__data">
@@ -91,19 +112,33 @@ unset($_SESSION['flash_message']);
                                 </td>
                             </tr>
                         <?php endforeach; ?>
+                    <?php  else: ?>
+                        <tr>
+                            <td colspan="8" class="table__data">Não existe nenhum livro cadastrado.</td>
+                        </tr>
+                    <?php endif; ?>
                     </tbody>
                 </table>
             </form>
 
+            <?php if (count($books) > 0): ?>
+                <div class="pagination">
+                    <?php if ($pagination['previous_page'] !== null): ?>
+                        <a href="index.php?page=<?= $pagination['previous_page'] ?>" class="pagination__item">Anterior</a>
+                    <?php endif; ?>
 
-            <div class="pagination">
-                <a href="index.php?pagina=<?= $previousPage ?>" class="pagination__item">Anterior</a>
-                <?php for($i=0; $i < $numberOfPages; $i++) :?>
-                    <?php  $estilo = ""; if ($pagina == $i) { $estilo = "pagination__item--active"; }; ?>
-                    <a href="index.php?pagina=<?= $i ?>" class="pagination__item <?= $estilo; ?>"><?= $i + 1; ?></a>
-                <?php endfor; ?>
-                <a href="index.php?pagina=<?= $nextPage ?>" class="pagination__item">Próximo</a>
-            </div>
+                    <?php foreach ($pagination['pages'] as $page): ?>
+                        <?php $style = $pagination['current_page'] === $page ? 'pagination__item--active' : '' ?>
+                        <a href="index.php?page=<?= $page ?>" class="pagination__item <?= $style; ?>">
+                            <?= $page ?>
+                        </a>
+                    <?php endforeach; ?>
+
+                    <?php if ($pagination['next_page'] !== null): ?>
+                        <a href="index.php?page=<?= $pagination['next_page'] ?>" class="pagination__item">Próximo</a>
+                    <?php endif; ?>
+                </div>
+            <?php endif; ?>
         </div>
     </main>
     <footer class="footer">

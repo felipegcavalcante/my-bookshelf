@@ -2,7 +2,7 @@
 
 session_start();
 
-require_once '../../conection.php';
+require_once '../../connection.php';
 
 $input = $_POST;
 
@@ -10,8 +10,11 @@ $email = $input["email"];
 $password = $input["senha"];
 
 if(empty($email) || empty($password)) {
-    $_SESSION['preencha_campos'] = true;
-	header('Location: index.php');
+    $_SESSION['flash_message'] = [
+        'type' => 'error',
+        'message' => 'Preencha todos os campos!'
+    ];
+    header('Location: index.php');
 	exit();
 }
 
@@ -24,8 +27,11 @@ if ($result->rowCount() == 1) {
     $_SESSION["nome"] = $row->nome;
     header('Location: ../books/index.php');
 } else {
-    $_SESSION['nao_autenticado'] = true;
-	header('Location: index.php');
+    $_SESSION['flash_message'] = [
+        'type' => 'error',
+        'message' => 'Login ou senha incorretos!'
+    ];
+    header('Location: index.php');
 	exit();
 }
 ?>
