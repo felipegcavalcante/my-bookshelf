@@ -1,46 +1,22 @@
 <?php
 
-session_start();
-require_once "../login/verificaLogin.php";
-require_once "../../connection.php";
-isLogged();
+    require_once "database_books.php";
+    require_once "../paginate.php";
+    require_once "../session.php";
 
-$name = $_SESSION["nome"];
-$userId = (int)$_SESSION["id"];
+    $user = verify_login();
 
-require_once "../../paginate.php";
+    $page = (int) ($_GET['page'] ?? 1);
+    $size = (int) ($_GET['size'] ?? 10);
 
-$sql1 = "SELECT COUNT(*) AS total FROM livro WHERE id_usuario = :userId";
-$result1 = $conn->prepare($sql1);
+    $databaseBooks = new DatabaseBooks();
+    $totalOfBooks = $databaseBooks->getTotalOfBooks($user['id']);
+    $pagination = paginate($totalOfBooks, $size, $page);
 
-$result1->bindParam('userId', $userId, PDO::PARAM_INT);
-$result1->execute();
-$count = $result1->fetchAll();
-$count = (int) $count[0]['total'];
-$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
-$size = (isset($_GET['size'])) ? (int)$_GET['size'] : 10;
+    $books = $databaseBooks->getBooks($user['id'], $pagination['current_page'], $pagination['size']);
 
-
-$pagination = paginate($count, $size, $page);
-
-    $sql2 = "SELECT * FROM livro WHERE id_usuario = :userId LIMIT :offset, :limit;";
-    $result2 = $conn->prepare($sql2);
-
-    $result2->bindParam('userId', $userId, PDO::PARAM_INT);
-    $result2->bindParam('offset', $pagination['current_page'], PDO::PARAM_INT);
-    $result2->bindParam('limit', $pagination['size'], PDO::PARAM_INT);
-    $result2->execute();
-
-    $books = $result2->fetchAll();
-
-    // 05. get flash message and clean the session
-    $message = isset($_SESSION['flash_message']) ? $_SESSION['flash_message'] : null;
-    unset($_SESSION['flash_message']);
-
-
+    $message = get_flash_message();
 ?>
-
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -61,7 +37,7 @@ $pagination = paginate($count, $size, $page);
             <h1 class="header__logo">My Bookshelf</h1>
             <div class="header__user-area">
                 <i class="fa-solid fa-user header__icon"></i>
-                <div class="header__username">Olá, <?= $name ?>!</div>
+                <div class="header__username">Olá, <?= $user['name'] ?>!</div>
                 <a class="header__logout" href="../login/logout.php">Logout</a>
             </div>
         </div>
@@ -74,8 +50,12 @@ $pagination = paginate($count, $size, $page);
                 </div>
             <?php endif; ?>
 
-            <a href="create.php" class="button">Cadastrar Livro</a>
-            <button form="delete_batch" class="button button--secondary" name="remover_selecionados" value="remover_selecionados">Remover Selecionados</button>
+            <div class="main__toolbar">
+                <a href="create.php" class="button">Cadastrar Livro</a>
+                <button name="remover_selecao" form="delete_batch" class="button button--secondary">
+                    Remover Seleção
+                </button>
+            </div>
 
             <form action="delete_batch.php" method="post" id="delete_batch">
                 <table class="table table--striped">
@@ -96,14 +76,14 @@ $pagination = paginate($count, $size, $page);
                         <?php foreach ($books as $book): ?>
                             <tr class="table__row">
                                 <td class="table__data">
-                                    <input class="table__checkbox" type="checkbox" name="ids[<?= $book['id_livro']; ?>]" id="">
+                                    <input class="table__checkbox" type="checkbox" name="ids[]" id="" value="<?= $book['id_livro']; ?>">
                                 </td>
                                 <td class="table__data" data-header="Capa">
                                     <img class="table__img" src="../../<?= $book['capa']; ?>" alt="Capa do Livro <?= $book['titulo']; ?>">
                                 </td>
                                 <td class="table__data" data-header="Título"><?= $book['titulo']; ?></td>
                                 <td class="table__data" data-header="Autor"><?= $book['autor']; ?></td>
-                                <td class="table__data" data-header="Gênero"></td>
+                                <td class="table__data" data-header="Gênero"><?= $book['genero']; ?></td>
                                 <td class="table__data" data-header="Editora"><?= $book['editora']; ?></td>
                                 <td class="table__data" data-header="N° de Páginas"><?= $book['paginas']; ?></td>
                                 <td class="table__data" data-header="Ações">
@@ -121,7 +101,7 @@ $pagination = paginate($count, $size, $page);
                 </table>
             </form>
 
-            <?php if (count($books) > 0): ?>
+            <?php if (count($books) > 0 && count($pagination['pages']) > 1): ?>
                 <div class="pagination">
                     <?php if ($pagination['previous_page'] !== null): ?>
                         <a href="index.php?page=<?= $pagination['previous_page'] ?>" class="pagination__item">Anterior</a>

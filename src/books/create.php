@@ -1,39 +1,18 @@
 <?php
-session_start();
-require_once "../../connection.php";
-if(!isset($_SESSION["nome"])) {
-    header('Location: ../login/index.php');
-    exit();
-}
+    require_once "database_books.php";
+    require_once "../session.php";
 
-$nome = $_SESSION["nome"];
-$id_usuario = $_SESSION["id"];
+    $user = verify_login();
 
-$message = isset($_SESSION['flash_message']) ? $_SESSION['flash_message'] : null;
-unset($_SESSION['flash_message']);
+    if (isset($_SESSION['validation'])) {
+        $validation = $_SESSION['validation'];
+        $book = $validation['data'];
+        $errors = $validation['errors'];
+        unset($_SESSION['validation']);
+    }
 
-$result = $conn->prepare("SELECT * FROM genero");
-$result->execute();
-$generos = $result->fetchAll();
-
- /*
-
-CRUD
-- Crud name - SQL name - REST name
-- Create - INSERT - POST
-- Retrieve - SELECT - GET
-- Update - UPDATE - PUT/PATCH
-- Delete - DELETE - DELETE
-
-index -> listagem
-create -> formulário de criação
-store -> processo de armazenamento do que foi criado
-edit -> formulário de edição
-update -> processo de armazenamento do que foi alterado
-delete -> processo de remoção
-delete_batch -> processo de remoção em lote
-*/
-
+    $databaseBooks = new DatabaseBooks();
+    $genres = $databaseBooks->getGenres();
 ?>
 
 <!DOCTYPE html>
@@ -53,12 +32,12 @@ delete_batch -> processo de remoção em lote
 <body>
     <header class="header">
         <div class="header__container">
-        <a href="../index.php" class="header__logo__link">
-            <h1 class="header__logo">My Bookshelf</h1>
-        </a>
+            <a href="index.php" class="header__logo__link">
+                <h1 class="header__logo">My Bookshelf</h1>
+            </a>
             <div class="header__user-area">
                 <i class="fa-solid fa-user header__icon"></i>
-                <div class="header__username">Olá, <?= $nome ?>!</div>
+                <div class="header__username">Olá, <?= $user['name'] ?>!</div>
                 <a class="header__logout" href="../login/logout.php">Logout</a>
             </div>
         </div>
@@ -67,37 +46,44 @@ delete_batch -> processo de remoção em lote
         <div class="main__container">
             <h1 class="main__title">Cadastrar Livro</h1>
 
-            <?php if (! empty($message)): ?>
-                <div class="alert alert--<?= $message['type'] ?>">
-                    <?= $message['message'] ?>
-                </div>
+            <?php if (! empty($errors)): ?>
+                <ul class="alert alert--error">
+                    <?php foreach ($errors as $error): ?>
+                        <li><?= $error ?></li>
+                    <?php endforeach;?>
+                </ul>
             <?php endif; ?>
 
             <form action="store.php" method="post" class="form" enctype="multipart/form-data">
                 <div class="form__group">
                     <label for="titulo" class="form__label">Título</label>
-                    <input type="text" name="titulo" id="titulo" class="form__input" autofocus>
+                    <input type="text" name="titulo" id="titulo" class="form__input" value="<?= $book['titulo'] ?? ''; ?>" autofocus>
                 </div>
                 <div class="form__group">
                     <label for="autor" class="form__label">Autor</label>
-                    <input type="text" name="autor" id="autor" class="form__input" placeholder="Separar por vírgula">
+                    <input type="text" name="autor" id="autor" class="form__input" placeholder="ex: Clarice Lispector, Monteiro Lobato" value="<?= $book['autor'] ?? ''; ?>">
                 </div>
                 <div class="form__group">
                     <label for="paginas" class="form__label">Número de Páginas</label>
-                    <input type="number" name="paginas" id="paginas" class="form__input">
+                    <input type="text" name="paginas" id="paginas" class="form__input" value="<?= $book['paginas'] ?? ''; ?>">
                 </div>
                 <div class="form__group">
                     <label for="genero" class="form__label">Gênero</label>
                     <select name="genero[]" id="genero" class="form__select" multiple>
-                        <?php foreach ($generos as $genero) : ?>
-                            <option class="form__option" value="<?= $genero['id_genero'] ?>"><?= $genero['nome'] ?></option>';
+                        <?php foreach ($genres as $genre): ?>
+                            <?php $selectedGenres = $book['genero'] ?? []; ?>
+                            <?php $selected = in_array($genre['id_genero'], $selectedGenres) ? 'selected' : ''; ?>
+                            <option class="form__option" value="<?= $genre['id_genero'] ?>" <?= $selected; ?>>
+                                <?=  $genre['nome'] ?>
+                            </option>
                         <?php endforeach; ?>
                     </select>
                     <p class="form__helper">Aperte CTRL para selecionar mais de um gênero</p>
                 </div>
                 <div class="form__group">
                     <label for="nacional" class="form__label">Publicação Nacional</label>
-                    <input type="checkbox" name="nacional" id="nacional" class="form__checkbox" value="on">
+                    <?php $checked = isset($book['nacional']) ? 'checked' : ''; ?>
+                    <input type="checkbox" name="nacional" id="nacional" class="form__checkbox" <?= $checked ?>>
                 </div>
                 <div class="form__group">
                     <label for="capa" class="form__label">Capa</label>
@@ -105,15 +91,17 @@ delete_batch -> processo de remoção em lote
                 </div>
                 <div class="form__group">
                     <label for="editora" class="form__label">Editora</label>
-                    <input type="text" name="editora" id="editora" class="form__input">
+                    <input type="text" name="editora" id="editora" class="form__input" value="<?= $book['editora'] ?? ''; ?>">
                 </div>
                 <div class="form__group">
                     <label for="descricao" class="form__label">Descrição</label>
-                    <textarea name="descricao" id="descricao" rows="3" class="form__text-area"></textarea>
+                    <textarea name="descricao" id="descricao" rows="3" class="form__text-area"><?= $book['descricao'] ?? ''; ?></textarea>
                 </div>
-                <a href="index.php" class="button button--secondary">Voltar</a>
-                <input type="hidden" name="id_usuario" value="<?= $id_usuario ?>">
-                <input type="submit" class="button" value="Cadastrar">
+                <div class="form__action">
+                    <a href="index.php" class="button button--secondary">Voltar</a>
+                    <input type="hidden" name="id_usuario" value="<?= $user['id'] ?>">
+                    <input type="submit" class="button" value="Cadastrar">
+                </div>
             </form>
         </div>
     </main>

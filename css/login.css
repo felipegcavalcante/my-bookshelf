@@ -28,7 +28,6 @@ th, td {
   display: inline-block;
   font-size: 1.125rem;
   font-weight: 500;
-  margin-bottom: 20px;
   padding: .6rem 1.2rem;
   text-align: center;
   text-decoration: none;
@@ -48,15 +47,11 @@ th, td {
     .button--danger:hover {
       background-color: #fd4545; }
 
-@media (min-width: 768px) {
-  .form {
-    width: 50%; } }
-
 .form__group {
   margin-bottom: 10px; }
 
 .form__label {
-  color: #3b3b3b;
+  color: #333333;
   display: block;
   font-size: 1.2rem;
   margin-bottom: 6px;
@@ -66,12 +61,11 @@ th, td {
   border-radius: 5px;
   border: 1px solid #ccc;
   box-sizing: border-box;
-  color: #3b3b3b;
+  color: #333333;
   font-size: 1.2rem;
   height: 2.5rem;
   outline-color: #ccc;
   padding-left: 5px;
-  transition: .3s;
   width: 100%; }
   .form__input:focus {
     outline-color: #0066ff; }
@@ -86,12 +80,11 @@ th, td {
   border-radius: 5px;
   border: 1px solid #ccc;
   box-sizing: border-box;
-  color: #3b3b3b;
+  color: #333333;
   font-size: 1.2rem;
   outline-color: #ccc;
   padding-left: 5px;
   padding-top: 5px;
-  transition: .3s;
   width: 100%; }
   .form__text-area:focus {
     outline-color: #0066ff; }
@@ -100,12 +93,11 @@ th, td {
   border-radius: 5px;
   border: 1px solid #ccc;
   box-sizing: border-box;
-  color: #3b3b3b;
+  color: #333333;
   font-size: 1.2rem;
   height: 7.5rem;
   outline-color: #ccc;
   padding-left: 5px;
-  transition: .3s;
   width: 100%; }
   .form__select:focus {
     outline-color: #0066ff; }
@@ -113,7 +105,7 @@ th, td {
 .form__checkbox {
   border-radius: 5px;
   border: 1px solid #ccc;
-  color: #3b3b3b;
+  color: #333333;
   font-size: 1.2rem;
   height: 2rem;
   margin-left: 0;
@@ -123,26 +115,24 @@ th, td {
 
 .form__helper {
   color: #ccc;
-  font-size: .8rem; }
+  font-size: .8rem;
+  margin-top: .3rem; }
 
 .alert {
   border-radius: 5px;
-  font-size: 1.5rem;
-  margin: auto;
-  padding: .75rem;
-  text-align: center;
-  margin-bottom: 30px;
-  margin-top: 30px; }
+  font-size: 1.0rem;
+  margin-bottom: 1.0rem;
+  padding: 0.8rem 1.6rem;
+  text-align: center; }
+  .alert li:not(:last-child) {
+    margin-bottom: 3px; }
   .alert--success {
     background-color: #c2efc2;
     color: #198754; }
   .alert--error {
     background-color: #ffcccc;
-    color: #ff1a1a; }
-  @media (min-width: 768px) {
-    .alert {
-      margin-left: 0;
-      width: 50%; } }
+    color: #ff1a1a;
+    text-align: left; }
 
 .pagination {
   display: flex;
@@ -150,7 +140,7 @@ th, td {
   margin-bottom: 20px; }
   .pagination__item {
     border: 1px solid #ddd;
-    color: #3b3b3b;
+    color: #333333;
     padding: .3125rem .625rem;
     transition: .5s; }
     .pagination__item:hover {
@@ -175,14 +165,14 @@ th, td {
     color: black;
     font-weight: bold; }
   .table__data {
-    color: #3b3b3b;
-    padding: .375rem; }
+    color: #333333;
+    padding: .5rem .75rem; }
   .table__button {
-    color: #3b3b3b;
-    text-decoration: underline;
-    transition: .3s; }
+    color: #0066ff;
+    margin-right: 0.25rem;
+    text-decoration: underline; }
     .table__button:hover {
-      color: black; }
+      color: #0052cc; }
   .table__img {
     height: 100px; }
   .table--striped tr:nth-child(even) {
@@ -229,7 +219,8 @@ th, td {
 .header {
   background-color: #f3f3f3;
   display: flex;
-  height: 80px; }
+  height: 80px;
+  margin-bottom: 30px; }
   .header__container {
     align-items: center;
     display: flex;
@@ -261,8 +252,11 @@ th, td {
     .main__container {
       margin: auto 10%; } }
 
+.main__toolbar .button:not(:last-child) {
+  margin-right: 0.5rem; }
+
 .main__title {
-  color: #3b3b3b;
+  color: #333333;
   margin-bottom: 30px;
   margin-left: -1px;
   padding-top: .4rem; }
@@ -275,11 +269,17 @@ th, td {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100vh; }
+  height: 100vh;
+  padding: 0 16px;
+  width: 100vw; }
+
+.login__box {
+  max-width: 420px;
+  width: 100%; }
 
 .login__logo {
   font-family: 'Ramaraja';
-  font-size: 5rem;
+  font-size: 3.5rem;
   text-align: center; }
 
 .login__button {
@@ -290,7 +290,7 @@ th, td {
   width: 100%; }
 
 .login__text {
-  color: #3b3b3b;
+  color: #333333;
   font-size: 1.1rem;
   margin-top: 20px;
   text-align: center; }
@@ -302,31 +302,3 @@ th, td {
   transition: .3s; }
   .login__link:hover {
     text-decoration: underline; }
-
-.form {
-  width: 80%; }
-  @media (min-width: 768px) {
-    .form {
-      width: 40%; } }
-  .form__group {
-    margin-top: 20px;
-    width: 100%; }
-  .form__label {
-    font-size: 1.2rem; }
-  .form__input {
-    font-size: 1.2rem; }
-  .form__link {
-    color: #0066ff;
-    display: block;
-    text-decoration: none;
-    font-size: .9em;
-    margin-top: 7px;
-    transition: .3s; }
-    .form__link:hover {
-      text-decoration: underline; }
-
-.alert {
-  width: 80%; }
-  @media (min-width: 768px) {
-    .alert {
-      width: 40%; } }

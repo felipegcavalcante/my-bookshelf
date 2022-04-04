@@ -1,4 +1,4 @@
---up
+-- Up
 CREATE TABLE genero (
     id_genero INT NOT NULL auto_increment,
     nome VARCHAR(30),
@@ -16,5 +16,5 @@ INSERT INTO genero (nome) VALUES ("Infantil");
 INSERT INTO genero (nome) VALUES ("Biografia");
 INSERT INTO genero (nome) VALUES ("Poesia");
 
---down
+-- Down
 DROP TABLE genero;

@@ -1,25 +1,17 @@
 <?php
-session_start();
-require_once "../../connection.php";
-if(!isset($_SESSION["nome"])) {
-    header('Location: ../login/index.php');
-    exit();
-}
+    require_once "database_books.php";
+    require_once "../session.php";
 
-$nome = $_SESSION["nome"];
-$id_usuario = $_SESSION["id"];
+    // 1. verifica se o usuário está logado para realizar a inclusão
+    verify_login();
 
-// $input = $_POST;
+    // 2. obtém os dados da query string
+    $bookId = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
-// $id_livro = $input['id_livro'];
+    // 3. remove o livro do banco de dados
+    $databaseBooks = new DatabaseBooks();
+    $databaseBooks->removeBook($bookId);
 
-$id_livro = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
-
-$result = $conn->prepare("delete from livro where id_livro = ?;");
-$result->execute(array($id_livro));
-$_SESSION['flash_message'] = [
-    'type' => 'success',
-    'message' => 'Livro removido com sucesso!'
-];
-header('Location: index.php');
+    // 4. redirecionar para a página correta com uma mensagem de feedback
+    redirect_with_message('success', 'Livro removido com sucesso!', 'index.php');
 ?>

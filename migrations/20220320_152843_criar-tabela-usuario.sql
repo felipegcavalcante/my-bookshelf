@@ -1,4 +1,4 @@
--- up
+-- Up
 CREATE DATABASE my_bookshelf;
 
 USE my_bookshelf;
@@ -14,6 +14,6 @@ CREATE TABLE usuario (
 INSERT INTO usuario (nome, email, senha)
 VALUES ("Felipe", "felipesantistacavalcante@gmail.com", "12345678");
 
--- down
+-- Down
 DROP TABLE usuario;
 DROP DATABASE my_bookshelf;

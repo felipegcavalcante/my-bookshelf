@@ -11,16 +11,16 @@
 
     &__data {
         color: $font-color;
-        padding: .375rem;
+        padding: .5rem .75rem;
     }
 
     &__button {
-        color: $font-color;
+        color: $primary-color;
+        margin-right: 0.25rem;
         text-decoration: underline;
-        transition: .3s;
 
         &:hover {
-            color: $color-black;
+            color: darken($primary-color, 10%);
         }
     }
 

@@ -1,6 +1,7 @@
 <?php
 
-function paginate ($total, $size, $page) {
+function paginate($total, $size, $page): array
+{
     $numberOfPages = (int) ceil($total / $size);
     $arrPages = range(1, $numberOfPages);
 

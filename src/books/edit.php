@@ -1,37 +1,22 @@
 <?php
 
-session_start();
-require_once "../../connection.php";
-if(!isset($_SESSION["nome"])) {
-    header('Location: ../login/index.php');
-    exit();
-}
+    require_once "database_books.php";
+    require_once "../session.php";
 
-$nome = $_SESSION["nome"];
-$id_usuario = $_SESSION["id"];
+    $user = verify_login();
 
-$message = isset($_SESSION['flash_message']) ? $_SESSION['flash_message'] : null;
-unset($_SESSION['flash_message']);
+    $databaseBooks = new DatabaseBooks();
+    $bookId = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+    $book = $databaseBooks->getBook($bookId);
 
-// $input = $_POST;
-// $id_livro = $input['id_livro'];
+    if (isset($_SESSION['validation'])) {
+        $validation = $_SESSION['validation'];
+        $book = $validation['data'];
+        $errors = $validation['errors'];
+        unset($_SESSION['validation']);
+    }
 
-$id_livro = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
-
-$resultLivros = $conn->prepare("SELECT * FROM livro where id_livro = ?");
-$resultLivros->execute([$id_livro]);
-
-$book = $resultLivros->fetch();
-
-if ($book['nacional'] == 1) {
-    $checked = "checked";
-} else if ($book['nacional'] == 0) {
-    $checked = "";
-}
-
-$result = $conn->prepare("SELECT * FROM genero");
-$result->execute();
-$generos = $result->fetchAll();
+    $genres = $databaseBooks->getGenres();
 
 ?>
 <!DOCTYPE html>
@@ -51,10 +36,12 @@ $generos = $result->fetchAll();
 <body>
     <header class="header">
         <div class="header__container">
-            <h1 class="header__logo">My Bookshelf</h1>
+            <a href="index.php" class="header__logo__link">
+                <h1 class="header__logo">My Bookshelf</h1>
+            </a>
             <div class="header__user-area">
                 <i class="fa-solid fa-user header__icon"></i>
-                <div class="header__username">Olá, <?= $nome ?>!</div>
+                <div class="header__username">Olá, <?= $user['name'] ?>!</div>
                 <a class="header__logout" href="../login/logout.php">Logout</a>
             </div>
         </div>
@@ -85,15 +72,21 @@ $generos = $result->fetchAll();
                 <div class="form__group">
                     <label for="genero" class="form__label">Gênero</label>
                     <select name="genero[]" id="genero" class="form__select" multiple>
-                        <?php foreach ($generos as $genero) : ?>
-                            <option class="form__option" value="<?= $genero['id_genero'] ?>"><?= $genero['nome'] ?></option>';
+                        <?php $book['genero'] = explode(',', $book['genero']); ?>
+                        <?php foreach ($genres as $genre): ?>
+                            <?php $selectedGenres = $book['genero'] ?? []; ?>
+                            <?php $selected = in_array($genre['id_genero'], $selectedGenres) ? 'selected' : ''; ?>
+                            <option class="form__option" value="<?= $genre['id_genero'] ?>" <?= $selected; ?>>
+                                <?=  $genre['nome'] ?>
+                            </option>
                         <?php endforeach; ?>
                     </select>
                     <p class="form__helper">Aperte CTRL para selecionar mais de um gênero</p>
                 </div>
                 <div class="form__group">
-                    <label for="publicacao" class="form__label">Publicação Nacional</label>
-                    <input type="checkbox" name="publicacao" id="publicacao" class="form__checkbox" <?= $checked ?> >
+                    <label for="nacional" class="form__label">Publicação Nacional</label>
+                    <?php $checked = isset($book['nacional']) ? 'checked' : ''; ?>
+                    <input type="checkbox" name="nacional" id="nacional" class="form__checkbox" <?= $checked ?>>
                 </div>
                 <div class="form__group">
                     <label for="capa" class="form__label">Capa</label>
@@ -108,7 +101,7 @@ $generos = $result->fetchAll();
                     <textarea name="descricao" id="descricao" rows="3" class="form__text-area"><?= $book['descricao']; ?></textarea>
                 </div>
                 <a href="index.php" class="button button--secondary">Voltar</a>
-                <input type="hidden" name="id_usuario" value="<?= $id_usuario ?>">
+                <input type="hidden" name="id_usuario" value="<?= $user['id'] ?>">
                 <input type="hidden" name="id_livro" value="<?= $book['id_livro'] ?>">
                 <input type="submit" class="button" value="Salvar">
             </form>

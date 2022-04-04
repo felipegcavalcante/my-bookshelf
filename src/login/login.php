@@ -1,37 +1,21 @@
 <?php
+    require_once 'database_login.php';
+    require_once '../session.php';
 
-session_start();
+    $email = $_POST["email"];
+    $password = $_POST["senha"];
 
-require_once '../../connection.php';
+    if (empty($email) || empty($password)) {
+        redirect_with_message('error', 'Preencha todos os campos!', 'index.php');
+    }
 
-$input = $_POST;
+    $databaseLogin = new DatabaseLogin();
+    $user = $databaseLogin->login($email, $password);
 
-$email = $input["email"];
-$password = $input["senha"];
+    if (empty($user)) {
+        redirect_with_message('error', 'Login ou senha incorretos!', 'index.php');
+    }
 
-if(empty($email) || empty($password)) {
-    $_SESSION['flash_message'] = [
-        'type' => 'error',
-        'message' => 'Preencha todos os campos!'
-    ];
-    header('Location: index.php');
-	exit();
-}
-
-$result = $conn->query("SELECT * FROM usuario where email = '{$email}' and senha = '{$password}'");
-$result->execute();
-$row = $result->fetch(PDO::FETCH_OBJ);
-
-if ($result->rowCount() == 1) {
-    $_SESSION["id"] = $row->id;
-    $_SESSION["nome"] = $row->nome;
+    $_SESSION["user"] = $user;
     header('Location: ../books/index.php');
-} else {
-    $_SESSION['flash_message'] = [
-        'type' => 'error',
-        'message' => 'Login ou senha incorretos!'
-    ];
-    header('Location: index.php');
-	exit();
-}
 ?>

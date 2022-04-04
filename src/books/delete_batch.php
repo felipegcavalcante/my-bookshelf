@@ -1,42 +1,18 @@
 <?php
 
-session_start();
-require_once "../../connection.php";
-if(!isset($_SESSION["nome"])) {
-    header('Location: ../login/index.php');
-    exit();
-}
+    require_once "database_books.php";
+    require_once "../session.php";
 
-$nome = $_SESSION["nome"];
-$id_usuario = $_SESSION["id"];
+    // 1. verifica se o usuário está logado para realizar a inclusão
+    verify_login();
 
-$livros_id = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-var_dump($livros_id);
+    // 2. obtém os dados do formulário
+    $ids = $_POST['ids'];
 
-if (!empty($livros_id['remover_selecionados'])) {
-    if (isset($livros_id['ids'])) {
-        foreach ($livros_id['ids'] as $id_livro => $livro) {
-            $result = $conn->prepare("delete from livro where id_livro = ?;");
-            $result->execute(array($id_livro));
-        }
-        $_SESSION['flash_message'] = [
-            'type' => 'success',
-            'message' => 'Livros removidos com sucesso!'
-        ];
-        header('Location: index.php');
-    } else {
-        $_SESSION['flash_message'] = [
-            'type' => 'error',
-            'message' => 'Selecione Livros!'
-        ];
-        header('Location: index.php');
-    }
-} else {
-    $_SESSION['flash_message'] = [
-        'type' => 'error',
-        'message' => 'Selecione Livros!'
-    ];
-    header('Location: index.php');
-}
+    // 3. remove os livros do banco de dados
+    $databaseBooks = new DatabaseBooks();
+    $databaseBooks->removeBooksBatch($ids);
 
+    // 4. redirecionar para a página correta com uma mensagem de feedback
+    redirect_with_message('success', 'Livros removidos com sucesso!', 'index.php');
 ?>

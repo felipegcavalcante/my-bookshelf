@@ -1,4 +1,4 @@
---up
+-- Up
 CREATE TABLE livro (
     id_livro INT  NOT NULL auto_increment,
     titulo VARCHAR(80) NOT NULL,
@@ -14,5 +14,5 @@ CREATE TABLE livro (
     FOREIGN KEY(id_usuario) REFERENCES usuario(id)
 );
 
---down
+-- Down
 DROP TABLE livro;

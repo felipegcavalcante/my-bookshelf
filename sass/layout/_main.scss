@@ -7,6 +7,12 @@
         }
     }
 
+    &__toolbar {
+        .button:not(:last-child) {
+            margin-right: 0.5rem;
+        }
+    }
+
     &__title {
         color: $font-color;
         margin-bottom: 30px;

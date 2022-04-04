@@ -5,11 +5,18 @@
         flex-direction: column;
         justify-content: center;
         height: 100vh;
+        padding: 0 16px;
+        width: 100vw;
+    }
+
+    &__box {
+        max-width: 420px;
+        width: 100%;
     }
 
     &__logo {
         font-family: 'Ramaraja';
-        font-size: 5rem;
+        font-size: 3.5rem;
         text-align: center;
     }
 
@@ -37,48 +44,5 @@
         &:hover {
             text-decoration: underline;
         }
-    }
-}
-
-.form {
-    width: 80%;
-
-    @media (min-width: 768px) {
-        width: 40%;
-    }
-
-    &__group {
-        margin-top: 20px;
-        width: 100%;
-    }
-
-    &__label {
-        font-size: $font-size;
-    }
-
-    &__input {
-        font-size: $font-size;
-    }
-
-    &__link {
-        color: $primary-color;
-        display: block;
-        text-decoration: none;
-        font-size: .9em;
-        margin-top: 7px;
-        transition: .3s;
-
-        &:hover {
-            text-decoration: underline;
-        }
-    }
-
-}
-
-.alert {
-    width: 80%;
-
-    @media (min-width: 768px) {
-        width: 40%;
     }
 }

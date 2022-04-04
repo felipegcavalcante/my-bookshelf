@@ -1,0 +1,13 @@
+.form {
+    width: 100%;
+
+    @media (min-width: 768px) {
+        width: 50%;
+    }
+}
+
+.form__action {
+    .button:not(:last-child) {
+        margin-right: 0.5rem;
+    }
+}
